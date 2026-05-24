@@ -1,0 +1,21 @@
+{
+  "name": "mumu.ing",
+  "short_name": "mumu.ing",
+  "description": "Mumu is a muuvement to unite everyone in crypto. Backed by number go up technology, the bull we know and love is here to lead the charge. Launched with the starting supply of the U.S. dollar, mutoshi and his delinquents are on a mission to dethrone the establishment and forge the ultimate decentralized currency. The memecoin to rule them all. Join the stampede today.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#c15300",
+  "theme_color": "#c15300",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
