@@ -204,12 +204,25 @@ async function main() {
   });
   console.log(`New commit: ${newCommit.sha.slice(0, 7)}`);
 
-  // Update or create branch ref
+  // Update or create branch ref — try non-force first, fall back to force
+  // only if the remote has diverged (e.g. someone pushed directly to GitHub)
   if (remoteCommitSha) {
-    await api(`/git/refs/heads/${BRANCH}`, {
-      method: "PATCH",
-      body: { sha: newCommit.sha, force: true },
-    });
+    try {
+      await api(`/git/refs/heads/${BRANCH}`, {
+        method: "PATCH",
+        body: { sha: newCommit.sha, force: false },
+      });
+    } catch (e) {
+      if (e.message.includes("422") || e.message.includes("not a fast forward")) {
+        console.warn("  Non-fast-forward push — forcing (Replit is source of truth)");
+        await api(`/git/refs/heads/${BRANCH}`, {
+          method: "PATCH",
+          body: { sha: newCommit.sha, force: true },
+        });
+      } else {
+        throw e;
+      }
+    }
   } else {
     await api("/git/refs", {
       method: "POST",

@@ -16,16 +16,16 @@ function MigrationUpdateSection() {
           $MUMU is migrating
         </h2>
         <p className="font-nerko text-2xl md:text-4xl text-mumu-orange-6 mb-12 text-center uppercase">
-          Migration to Pump.fun opens June 2nd
+          Migration to Pump.fun opens June 1st
         </p>
 
         <div className="relative w-full max-w-[600px] min-h-[344px] flex flex-col items-center">
           <div className="bg-[#572500] rounded-[40px] p-8 md:p-12 text-white font-nerko text-center z-20 shadow-container relative mb-16 md:mb-32">
             <h3 className="text-xl md:text-3xl mb-4">
-              Migration Portal Opens June 2nd
+              Migration Portal Opens June 1st
             </h3>
             <p className="text-white/70 text-sm md:text-base leading-relaxed">
-              The $MUMU → Pump.fun migration portal goes live on June 2nd.
+              The $MUMU → Pump.fun migration portal goes live on June 1st.
               Check back then to migrate your tokens.
             </p>
           </div>

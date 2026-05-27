@@ -11,7 +11,7 @@ function HeroSection() {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2026-06-02T00:00:00Z").getTime();
+    const targetDate = new Date("2026-06-01T00:00:00Z").getTime();
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime();
@@ -66,7 +66,7 @@ function HeroSection() {
               Migration to Pump.fun
             </h2>
             <p className="text-white/70 font-nerko text-base md:text-xl text-center mb-6 md:mb-8">
-              Portal opens June 2nd
+              Portal opens June 1st
             </p>
 
             <div className="grid grid-cols-4 gap-2 md:gap-4 w-full max-w-sm mb-8 md:mb-12">
@@ -127,7 +127,7 @@ function HeroSection() {
               disabled
               className="cursor-not-allowed opacity-50 bg-white text-black font-nerko text-xl md:text-2xl px-8 md:px-12 py-3 md:py-4 rounded-buttons shadow-container uppercase tracking-wide"
             >
-              OPENS JUNE 2ND
+              OPENS JUNE 1ST
             </button>
           </div>
 
@@ -191,7 +191,7 @@ function HeroSection() {
               <div className="bg-white/10 rounded-full px-6 py-2 flex items-center gap-3 border border-white/10">
                 <div className="w-2.5 h-2.5 rounded-full bg-white/30" />
                 <span className="text-white/50 font-nerko text-sm">
-                  Portal opens June 2nd
+                  Portal opens June 1st
                 </span>
               </div>
             </div>

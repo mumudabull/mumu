@@ -4,25 +4,25 @@ const steps = [
   {
     title: "Setup",
     description:
-      "A new Pumpfun token was created using the Migratefun Creator Dashboard with the same ticker (Mumu), image, and parameters.",
+      "A new Pumpfun token will be created using the Migratefun Creator Dashboard with the same ticker (Mumu), image, and parameters.",
     bgColor: "bg-[#BCA991]",
   },
   {
-    title: "Deposit Window",
+    title: "Deposit Window (June 1st – June 8th)",
     description:
-      "Holders deposited their old Mumu tokens through migrate.fun during the window (Feb 24 - Mar 10).",
+      "Holders will deposit their old Mumu tokens through migrate.fun during the deposit window (June 1st – June 8th).",
     bgColor: "bg-[#C8B7A4]",
   },
   {
     title: "LP Recovery",
     description:
-      "MigrateFun sold the deposited old Mumu tokens, reclaiming SOL from the old liquidity pool.",
+      "MigrateFun will sell the deposited old Mumu tokens, reclaiming SOL from the old liquidity pool.",
     bgColor: "bg-[#D4C5B7]",
   },
   {
     title: "Rebuying on PumpFun",
     description:
-      "Migratefun used the recovered SOL to buy into new Mumu's bonding curve and match the old token's final price.",
+      "Migratefun will use the recovered SOL to buy into new Mumu's bonding curve and match the old token's final price.",
     bgColor: "bg-[#E1D4CA]",
   },
   {
@@ -58,7 +58,7 @@ function HowMigrationWorkedSection() {
     >
       <div className="max-w-container container mx-auto relative z-10">
         <h2 className="text-white text-4xl md:text-6xl font-nerko text-center mb-12">
-          How Migration Worked
+          How Migration Will Work
         </h2>
 
         <div className="flex flex-col gap-8 items-center">

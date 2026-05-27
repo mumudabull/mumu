@@ -10,7 +10,7 @@ const FAQ_DATA = [
   {
     question: "When does migration open?",
     answer:
-      "The migration portal opens June 2nd, and token claims open June 8th. The claim period runs for 90 days. We recommend claiming as soon as possible after June 8th to ensure you receive your new tokens promptly.",
+      "The migration portal opens June 1st, and token claims open June 8th. The claim period runs for 90 days. We recommend claiming as soon as possible after June 8th to ensure you receive your new tokens promptly.",
   },
   {
     question: "What if I miss the deposit window?",

@@ -33,12 +33,14 @@ function BuySection() {
               seamless swaps across multiple tokens. No middlemen, just pure
               DeFi efficiency.
             </p>
-            <button
-              type="button"
-              className="hover:rotate-4 bg-[#3eff8b] hover:bg-[#34e67d] text-black font-nerko text-2xl md:text-3xl px-12 py-4 rounded-buttons shadow-container transition-all hover:scale-105 active:scale-95 uppercase cursor-pointer max-w-[250px] w-full"
+            <a
+              href="https://web3.okx.com/token/solana/5LafQUrVco6o7KMz42eqVEJ9LW31StPyGjeeu5sKoMtA"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block text-center hover:rotate-4 bg-[#3eff8b] hover:bg-[#34e67d] text-black font-nerko text-2xl md:text-3xl px-12 py-4 rounded-buttons shadow-container transition-all hover:scale-105 active:scale-95 uppercase cursor-pointer max-w-[250px] w-full"
             >
               BUY NOW
-            </button>
+            </a>
           </div>
         </div>
       </div>

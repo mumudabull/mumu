@@ -3,7 +3,7 @@ import React from "react";
 const timelineEvents = [
   {
     id: 1,
-    date: "June 2",
+    date: "June 1",
     title: "Migration Portal Opens",
     description:
       "The $MUMU → Pump.fun migration portal goes live. Holders can begin depositing their old Mumu tokens.",

@@ -5,19 +5,19 @@ const metrics = [
   {
     label: "Tokens Migrated",
     value: "—",
-    sub: "Available June 2nd",
+    sub: "Available June 1st",
     icon: <Zap className="w-5 h-5 text-white" />,
   },
   {
     label: "Active Migrators",
     value: "—",
-    sub: "Available June 2nd",
+    sub: "Available June 1st",
     icon: <Users className="w-5 h-5 text-white" />,
   },
   {
     label: "Total Value Locked",
     value: "—",
-    sub: "Available June 2nd",
+    sub: "Available June 1st",
     icon: <BarChart3 className="w-5 h-5 text-white" />,
   },
 ];
@@ -35,7 +35,7 @@ const LiveMetricsSection = () => {
               Migration Stats
             </h2>
             <p className="text-white/60 font-sans mt-2">
-              Live data will be available when the portal opens June 2nd.
+              Live data will be available when the portal opens June 1st.
             </p>
           </div>
           <div className="bg-white/10 text-white/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 text-sm font-medium flex items-center gap-2">
