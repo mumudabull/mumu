@@ -1,0 +1,1 @@
+- [Expo workflow port detection](expo-workflow-port-detection.md) — restart_workflow always fails DIDNT_OPEN_A_PORT for Expo artifacts; platform namespace issue, cannot be fixed in code.

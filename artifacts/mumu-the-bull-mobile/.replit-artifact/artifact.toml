@@ -1,0 +1,26 @@
+kind = "mobile"
+previewPath = "/mumu-the-bull-mobile/"
+title = "MUMU The Bull Mobile"
+version = "1.0.0"
+id = "artifacts/mumu-the-bull-mobile"
+router = "expo-domain"
+
+[[integratedSkills]]
+name = "expo"
+version = "1.0.0"
+
+[[services]]
+name = "expo"
+paths = [ "/mumu-the-bull-mobile/" ]
+localPort = 21569
+
+[services.development]
+run = "pnpm --filter @workspace/mumu-the-bull-mobile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/mumu-the-bull-mobile", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/mumu-the-bull-mobile", "run", "serve" ]
+
+[services.env]
+PORT = "21569"
+BASE_PATH = "/mumu-the-bull-mobile/"

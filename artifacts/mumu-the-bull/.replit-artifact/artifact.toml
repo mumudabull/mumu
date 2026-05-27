@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "MUMU The Bull"
+version = "1.0.0"
+id = "artifacts/mumu-the-bull"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25612
+
+[services.development]
+run = "pnpm --filter @workspace/mumu-the-bull run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/mumu-the-bull", "run", "build" ]
+publicDir = "artifacts/mumu-the-bull/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25612"
+BASE_PATH = "/"
