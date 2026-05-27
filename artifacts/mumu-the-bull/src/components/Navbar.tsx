@@ -13,14 +13,14 @@ const SOCIAL_LINKS = [
   {
     name: "telegram",
     icon: "/icons/telegram.svg",
-    href: "#",
-    disabled: true,
+    href: "https://t.me/MumuTheBullPortal",
+    disabled: false,
   },
   {
     name: "twitter",
     icon: "/icons/twitter.svg",
-    href: "#",
-    disabled: true,
+    href: "https://x.com/mumu_bull/",
+    disabled: false,
   },
   {
     name: "pumpfun",
@@ -154,7 +154,9 @@ export default function Navbar({
           </Link>
           <span className="w-px bg-white/20 h-10"></span>
           <a
-            href="#buy"
+            href="https://dexscreener.com/solana/fvmzrd1qc66zw8vprw15xn1n5owupqpqgnq5oh18mr4e"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-mumu-orange-6 hover:bg-mumu-orange-7 text-white font-nerko text-xl px-8 py-2 rounded-buttons shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] transition-all active:translate-y-1 active:shadow-none hover:-rotate-3"
           >
             BUY $MUMU
@@ -264,7 +266,9 @@ export default function Navbar({
               MIGRATE
             </Link>
             <a
-              href="#buy"
+              href="https://dexscreener.com/solana/fvmzrd1qc66zw8vprw15xn1n5owupqpqgnq5oh18mr4e"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
               className="w-full bg-white text-mumu-orange-6 font-nerko text-2xl py-4 rounded-buttons shadow-lg uppercase opacity-0 animate-pop-in hover:rotate-3 transition-all duration-300"
               style={{
