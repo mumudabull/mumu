@@ -34,7 +34,7 @@ function HeroSection() {
       }}
     >
       <h1 className="sr-only">
-        MUMU — The official bull market movement of Solana
+        Mumu is a muuvement to unite everyone in crypto. Backed by number go up technology and Solana OGs.
       </h1>
       <img
         id="mumu-subject"
@@ -89,7 +89,7 @@ function HeroSection() {
 
           <div className="z-20 w-full text-center px-4 mt-6">
             <p className="text-white font-nerko text-2xl md:text-4xl lg:text-5xl tracking-tight animate-pop-in">
-              The official bull market movement of Solana
+              Mumu is a muuvement to unite everyone in crypto. Backed by number go up technology and Solana OGs.
             </p>
           </div>
         </div>

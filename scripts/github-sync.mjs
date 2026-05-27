@@ -16,13 +16,38 @@
 
 import { execSync } from "child_process";
 import { createHash } from "crypto";
-import { existsSync, readFileSync, writeFileSync } from "fs";
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from "fs";
 
 const OWNER = "mumudabull";
 const REPO = "mumu";
 const BRANCH = "main";
 const SYNC_STATE_FILE = ".github-sync-sha";
+const SYNC_LOG_FILE = ".github-sync-log.jsonl";
 const TOKEN = process.env.GITHUB_TOKEN;
+const SYNC_STARTED_AT = Date.now();
+const SYNC_RUN = {
+  localSha: null,
+  localMsg: null,
+  remoteShaBefore: null,
+  remoteShaAfter: null,
+  uploaded: 0,
+  deleted: 0,
+  lfsUploaded: 0,
+  skipped: null,
+};
+
+function appendSyncLog(entry) {
+  try {
+    const line = JSON.stringify({
+      timestamp: new Date().toISOString(),
+      durationMs: Date.now() - SYNC_STARTED_AT,
+      ...entry,
+    });
+    appendFileSync(SYNC_LOG_FILE, line + "\n");
+  } catch (e) {
+    console.warn(`  (could not write sync log: ${e.message})`);
+  }
+}
 const CONCURRENT_UPLOADS = 8;
 const RETRY_LIMIT = 3;
 // Files larger than this are uploaded via Git LFS instead of as inline blobs.
@@ -174,12 +199,15 @@ async function uploadLfsObjects(objects, contentFor) {
 async function main() {
   const localSha = git("rev-parse HEAD");
   const localMsg = git(`log --format=%s -1 ${localSha}`);
+  SYNC_RUN.localSha = localSha;
+  SYNC_RUN.localMsg = localMsg;
   console.log(`Local HEAD:  ${localSha.slice(0, 7)} "${localMsg}"`);
 
   if (existsSync(SYNC_STATE_FILE)) {
     const lastSynced = readFileSync(SYNC_STATE_FILE, "utf8").trim();
     if (lastSynced === localSha) {
       console.log("Already synced this commit — nothing to do.");
+      SYNC_RUN.skipped = "already-synced";
       return;
     }
   }
@@ -192,6 +220,7 @@ async function main() {
   try {
     const ref = await api(`/git/refs/heads/${BRANCH}`);
     remoteCommitSha = ref.object.sha;
+    SYNC_RUN.remoteShaBefore = remoteCommitSha;
     const remoteCommit = await api(`/git/commits/${remoteCommitSha}`);
     remoteTreeSha = remoteCommit.tree.sha;
     console.log(`Remote HEAD: ${remoteCommitSha.slice(0, 7)}`);
@@ -293,6 +322,9 @@ async function main() {
   }
 
   console.log(`Changes: ${toUpload.length} to upload, ${toDelete.length} to delete`);
+  SYNC_RUN.uploaded = toUpload.length;
+  SYNC_RUN.deleted = toDelete.length;
+  SYNC_RUN.lfsUploaded = toUpload.filter((u) => u.isLfs).length;
 
   let newTreeSha = remoteTreeSha;
 
@@ -392,6 +424,8 @@ async function main() {
   if (newTreeSha === remoteTreeSha) {
     console.log("Tree unchanged — nothing to commit.");
     writeFileSync(SYNC_STATE_FILE, localSha);
+    SYNC_RUN.skipped = "tree-unchanged";
+    SYNC_RUN.remoteShaAfter = remoteCommitSha;
     return;
   }
 
@@ -431,6 +465,7 @@ async function main() {
   }
 
   writeFileSync(SYNC_STATE_FILE, localSha);
+  SYNC_RUN.remoteShaAfter = newCommit.sha;
   console.log(`\nGitHub sync complete — ${OWNER}/${REPO}:${BRANCH} updated`);
 }
 
@@ -443,7 +478,31 @@ function escapeRegex(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-main().catch((err) => {
-  console.error("\nGitHub sync failed:", err.message);
-  process.exit(1);
-});
+main()
+  .then(() => {
+    appendSyncLog({
+      status: SYNC_RUN.skipped ? "skipped" : "success",
+      reason: SYNC_RUN.skipped,
+      localSha: SYNC_RUN.localSha,
+      localMsg: SYNC_RUN.localMsg,
+      remoteShaBefore: SYNC_RUN.remoteShaBefore,
+      remoteShaAfter: SYNC_RUN.remoteShaAfter,
+      uploaded: SYNC_RUN.uploaded,
+      deleted: SYNC_RUN.deleted,
+      lfsUploaded: SYNC_RUN.lfsUploaded,
+    });
+  })
+  .catch((err) => {
+    console.error("\nGitHub sync failed:", err.message);
+    appendSyncLog({
+      status: "error",
+      localSha: SYNC_RUN.localSha,
+      localMsg: SYNC_RUN.localMsg,
+      remoteShaBefore: SYNC_RUN.remoteShaBefore,
+      uploaded: SYNC_RUN.uploaded,
+      deleted: SYNC_RUN.deleted,
+      lfsUploaded: SYNC_RUN.lfsUploaded,
+      error: err.message,
+    });
+    process.exit(1);
+  });
