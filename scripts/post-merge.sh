@@ -3,4 +3,4 @@ set -e
 pnpm install --frozen-lockfile
 pnpm --filter db push
 
-bash scripts/github-sync.sh
+node scripts/github-sync.mjs

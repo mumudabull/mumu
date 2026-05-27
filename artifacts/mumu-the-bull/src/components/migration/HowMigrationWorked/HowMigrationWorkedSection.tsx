@@ -26,22 +26,22 @@ const steps = [
     bgColor: "bg-[#E1D4CA]",
   },
   {
-    title: "Token Claiming (Now)",
+    title: "Token Claiming (Opens June 8th)",
     description:
-      "Holders can now claim their new Mumu tokens 1:1 at migrate.fun.",
+      "Starting June 8th, holders can claim their new Mumu tokens at migrate.fun. 1% of old Mumu = 1% of new Mumu — proportional ownership is preserved.",
     bgColor: "bg-white",
     isHighlighted: true,
   },
   {
     title: "Claim Period",
     description:
-      "90-day window (~until June 8th). Depositors claim 1:1. Those who did not deposit during the window can still migrate with a 5% penalty.",
+      "90-day window opens June 8th. Depositors keep their 1% = 1% share. Those who did not deposit during the window can still migrate with a 5% penalty.",
     bgColor: "bg-white",
   },
   {
     title: "After 90 Days",
     description:
-      "Unclaimed tokens + leftover SOL go to treasury. ~450M excess tokens will be burned.",
+      "Unclaimed tokens + leftover SOL go to treasury. Excess tokens will be removed from circulation and locked.",
     bgColor: "bg-white",
   },
 ];

@@ -3,25 +3,26 @@ import React from "react";
 const timelineEvents = [
   {
     id: 1,
-    date: "Feb 24 - Mar 10",
-    title: "Deposit Window",
+    date: "June 2",
+    title: "Migration Portal Opens",
     description:
-      "Phase 1 of migration where holders deposited their tokens. (Now Closed)",
-    status: "completed",
+      "The $MUMU → Pump.fun migration portal goes live. Holders can begin depositing their old Mumu tokens.",
+    status: "upcoming",
   },
   {
     id: 2,
-    date: "Mar 11 - June 8",
-    title: "Claim Period",
+    date: "June 8",
+    title: "Token Claims Open",
     description:
-      "90-day window to claim new $MUMU tokens at a 1:1 ratio. 5% penalty for late migration.",
-    status: "current",
+      "Holders can claim their new $MUMU tokens at migrate.fun. 1% of old Mumu = 1% of new Mumu — proportional ownership preserved.",
+    status: "upcoming",
   },
   {
     id: 3,
-    date: "June 8",
-    title: "Migration Deadline",
-    description: "The final date to claim or migrate your tokens.",
+    date: "~90 Days After",
+    title: "Claim Period Ends",
+    description:
+      "Late migrators incur a 5% penalty. Unclaimed tokens move to treasury and excess tokens are removed from circulation and locked.",
     status: "upcoming",
   },
 ];

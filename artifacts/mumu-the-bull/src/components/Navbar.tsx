@@ -11,9 +11,34 @@ const NAV_LINKS = [
 
 const SOCIAL_LINKS = [
   {
+    name: "telegram",
+    icon: "/icons/telegram.svg",
+    href: "#",
+    disabled: true,
+  },
+  {
     name: "twitter",
     icon: "/icons/twitter.svg",
-    href: "https://x.com/mumu_bull",
+    href: "#",
+    disabled: true,
+  },
+  {
+    name: "pumpfun",
+    icon: "/icons/pumpfun.svg",
+    href: "#",
+    disabled: true,
+  },
+  {
+    name: "instagram",
+    icon: "/icons/instagram.svg",
+    href: "https://instagram.com/",
+    disabled: false,
+  },
+  {
+    name: "tiktok",
+    icon: "/icons/tiktok.svg",
+    href: "https://tiktok.com/",
+    disabled: false,
   },
 ];
 
@@ -54,20 +79,28 @@ export default function Navbar({
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Desktop Left: Social Icons */}
-        <div className="hidden lg:flex items-center gap-4">
-          {SOCIAL_LINKS.slice(0, 3).map((social) => (
+        <div className="hidden lg:flex items-center gap-3">
+          {SOCIAL_LINKS.map((social) => (
             <a
               key={social.name}
               href={social.href}
-              target="_blank"
+              target={social.disabled ? undefined : "_blank"}
               rel="noreferrer"
-              className="hover:opacity-80 transition-opacity"
+              aria-label={social.name}
+              onClick={social.disabled ? (e) => e.preventDefault() : undefined}
+              aria-disabled={social.disabled || undefined}
+              className={`w-9 h-9 rounded-full bg-black flex items-center justify-center transition-transform ${
+                social.disabled
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:scale-110 hover:-rotate-6"
+              }`}
             >
               <img
                 src={social.icon}
                 alt={social.name}
-                width={24}
-                height={24}
+                width={18}
+                height={18}
+                className="brightness-0 invert"
               />
             </a>
           ))}
@@ -168,14 +201,14 @@ export default function Navbar({
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[60] bg-mumu-orange-6 flex flex-col items-center justify-center p-8 text-center animate-slide-in-right">
-          <div className="flex flex-col gap-8 mb-12">
+        <div className="lg:hidden fixed inset-0 z-[60] bg-mumu-orange-6 flex flex-col items-center justify-start overflow-y-auto px-8 pt-24 pb-12 text-center animate-slide-in-right">
+          <div className="flex flex-col gap-6 mb-10">
             {NAV_LINKS.map((link, index) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="font-nerko text-white text-5xl hover:scale-110 hover:rotate-2 transition-transform opacity-0 animate-pop-in"
+                className="font-nerko text-white text-4xl hover:scale-110 hover:rotate-2 transition-transform opacity-0 animate-pop-in"
                 style={{ animationDelay: `${0.1 + index * 0.1}s` }}
               >
                 {link.name}
@@ -183,14 +216,25 @@ export default function Navbar({
             ))}
           </div>
 
-          <div className="flex items-center gap-6 mb-12">
+          <div className="flex items-center gap-4 mb-10 flex-wrap justify-center">
             {SOCIAL_LINKS.map((social, index) => (
               <a
                 key={social.name}
                 href={social.href}
-                target="_blank"
+                target={social.disabled ? undefined : "_blank"}
                 rel="noreferrer"
-                className="hover:scale-125 transition-transform opacity-0 animate-pop-in"
+                aria-label={social.name}
+                onClick={
+                  social.disabled
+                    ? (e) => e.preventDefault()
+                    : () => setIsMobileMenuOpen(false)
+                }
+                aria-disabled={social.disabled || undefined}
+                className={`w-12 h-12 rounded-full bg-black flex items-center justify-center transition-transform opacity-0 animate-pop-in ${
+                  social.disabled
+                    ? "!opacity-50 cursor-not-allowed"
+                    : "hover:scale-110 hover:-rotate-6"
+                }`}
                 style={{
                   animationDelay: `${0.1 + (NAV_LINKS.length + index) * 0.1}s`,
                 }}
@@ -198,8 +242,9 @@ export default function Navbar({
                 <img
                   src={social.icon}
                   alt={social.name}
-                  width={32}
-                  height={32}
+                  width={22}
+                  height={22}
+                  className="brightness-0 invert"
                 />
               </a>
             ))}

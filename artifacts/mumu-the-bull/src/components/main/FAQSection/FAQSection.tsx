@@ -5,17 +5,17 @@ const FAQ_DATA = [
   {
     question: "How do I claim my new $MUMU tokens?",
     answer:
-      "Go to migrate.fun/project/mig139 - connect the wallet you used to deposit your old $MUMU tokens, and claim your new $MUMU 1:1. THIS IS THE ONLY LINK. Please stay safe from all other scam links and unsolicited messages.",
+      "Token claims open June 8th. Go to migrate.fun/project/mig139 - connect the wallet you used to deposit your old $MUMU tokens, and claim your new $MUMU. 1% of old Mumu = 1% of new Mumu — your proportional ownership is preserved. THIS IS THE ONLY LINK. Please stay safe from all other scam links and unsolicited messages.",
   },
   {
-    question: "How long do I have to claim or migrate?",
+    question: "When does migration open?",
     answer:
-      "The claim period is open for 90 days, lasting until approximately June 8th. We recommend claiming as soon as possible to ensure you receive your new tokens promptly.",
+      "The migration portal opens June 2nd, and token claims open June 8th. The claim period runs for 90 days. We recommend claiming as soon as possible after June 8th to ensure you receive your new tokens promptly.",
   },
   {
-    question: "What if I missed the deposit window?",
+    question: "What if I miss the deposit window?",
     answer:
-      "If you missed the initial deposit window (Feb 24 – Mar 10), you can still migrate during the 90-day claim period, but a 5% penalty will apply to your token conversion.",
+      "If you miss the initial deposit window after the portal opens, you can still migrate during the 90-day claim period, but a 5% penalty will apply to your token conversion.",
   },
   {
     question: "Why did $MUMU migrate?",
@@ -28,9 +28,9 @@ const FAQ_DATA = [
       "Once the 90-day claim period ends, all unclaimed tokens and leftover SOL will be moved to the project treasury to support future development and community initiatives.",
   },
   {
-    question: "Is there a token burn involved?",
+    question: "What happens to the excess tokens?",
     answer:
-      "Yes, approximately 450M excess tokens will be burned after the 90-day claim period to match the original circulating supply and prevent any dilution.",
+      "After the 90-day claim period, excess tokens will be removed from circulation and locked to match the original circulating supply and prevent any dilution.",
   },
 ];
 
