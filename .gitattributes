@@ -1,8 +1,4 @@
 # managed by scripts/github-sync.mjs — LFS-tracked paths
-.migration-backup/public/videos/hero-video.mp4 filter=lfs diff=lfs merge=lfs -text
-.migration-backup/public/videos/lore-video.mp4 filter=lfs diff=lfs merge=lfs -text
-.migration-backup/public/videos/lore-video.webm filter=lfs diff=lfs merge=lfs -text
-.migration-backup/public/videos/mumu-the-bull-intro.mp4 filter=lfs diff=lfs merge=lfs -text
 artifacts/mumu-the-bull/public/videos/hero-video.mp4 filter=lfs diff=lfs merge=lfs -text
 artifacts/mumu-the-bull/public/videos/lore-video.mp4 filter=lfs diff=lfs merge=lfs -text
 artifacts/mumu-the-bull/public/videos/lore-video.webm filter=lfs diff=lfs merge=lfs -text

@@ -51,3 +51,4 @@ Thumbs.db
 # GitHub sync state
 .github-sync-sha
 .github-sync-log.jsonl
+.migration-backup/
