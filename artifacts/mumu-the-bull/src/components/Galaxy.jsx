@@ -198,6 +198,16 @@ export default function Galaxy({
     if (!ctnDom.current) return;
     const ctn = ctnDom.current;
 
+    const probeCanvas = document.createElement("canvas");
+    const hasWebGL = !!(
+      probeCanvas.getContext("webgl2") ||
+      probeCanvas.getContext("webgl") ||
+      probeCanvas.getContext("experimental-webgl")
+    );
+    if (!hasWebGL) {
+      return;
+    }
+
     let renderer;
     let gl;
     try {
@@ -205,9 +215,12 @@ export default function Galaxy({
         alpha: transparent,
         premultipliedAlpha: false,
       });
-      gl = renderer.gl;
+      gl = renderer?.gl;
     } catch (e) {
       console.warn("Galaxy: WebGL not available", e);
+      return;
+    }
+    if (!gl) {
       return;
     }
 

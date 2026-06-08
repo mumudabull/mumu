@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import React from "react";
+import { SOCIAL_LINKS } from "@/components/Navbar";
 
 function FooterSection() {
   return (
@@ -16,18 +17,40 @@ function FooterSection() {
             />
           </div>
           <p className="text-white/60 font-sf-pro-display text-sm md:text-base max-w-[300px] mb-8 leading-relaxed">
-            A community of anons came together to give the bull market its
-            official meme. They iterated in real time, debating horns, colors,
-            expressions until Mumu emerged.
+            Mumu is a backed by number goes up technology and OG Solana
+            developers.
           </p>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://x.com/mumu_bull"
-              className="hover:opacity-80 transition-opacity"
-              aria-label="X"
-            >
-              <img src="/icons/twitter.svg" width={24} height={24} alt="X" />
-            </a>
+          <div className="flex items-center gap-4 flex-wrap">
+            {SOCIAL_LINKS.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target={social.disabled ? undefined : "_blank"}
+                rel="noreferrer"
+                aria-label={social.name}
+                onClick={
+                  social.disabled ? (e) => e.preventDefault() : undefined
+                }
+                aria-disabled={social.disabled || undefined}
+                className={`w-9 h-9 rounded-full bg-black flex items-center justify-center transition-transform ${
+                  social.disabled
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:scale-110 hover:-rotate-6"
+                }`}
+              >
+                <img
+                  src={social.icon}
+                  alt={social.name}
+                  width={18}
+                  height={18}
+                  className={
+                    "keepColor" in social && social.keepColor
+                      ? ""
+                      : "brightness-0 invert"
+                  }
+                />
+              </a>
+            ))}
           </div>
         </div>
 

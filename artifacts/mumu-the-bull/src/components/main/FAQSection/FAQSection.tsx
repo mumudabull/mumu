@@ -5,17 +5,17 @@ const FAQ_DATA = [
   {
     question: "How do I claim my new $MUMU tokens?",
     answer:
-      "Token claims open June 8th. Go to migrate.fun/project/mig139 - connect the wallet you used to deposit your old $MUMU tokens, and claim your new $MUMU. 1% of old Mumu = 1% of new Mumu — your proportional ownership is preserved. THIS IS THE ONLY LINK. Please stay safe from all other scam links and unsolicited messages.",
+      "$MUMU relaunches on Pump.fun and token claims open June 8th at 9AM EST. Go to https://migrate.fun/migrate/mig181 - connect the wallet you used to deposit your old $MUMU tokens, and claim your new $MUMU. 1% of old Mumu = 1% of new Mumu — your proportional ownership is preserved. THIS IS THE ONLY LINK. Please stay safe from all other scam links and unsolicited messages.",
   },
   {
     question: "When does migration open?",
     answer:
-      "The migration portal opens June 1st, and token claims open June 8th. The claim period runs for 90 days. We recommend claiming as soon as possible after June 8th to ensure you receive your new tokens promptly.",
+      "The migration portal is open now (it opened June 1st at 9AM EST) at migrate.fun, and $MUMU relaunches on Pump.fun with token claims on June 8th at 9AM EST. The claim period runs for 90 days. We recommend claiming as soon as possible after June 8th to ensure you receive your new tokens promptly.",
   },
   {
     question: "What if I miss the deposit window?",
     answer:
-      "If you miss the initial deposit window after the portal opens, you can still migrate during the 90-day claim period, but a 5% penalty will apply to your token conversion.",
+      "If you miss the initial deposit window after the portal opens, you can still migrate during the 90-day claim period. Claims made after June 20th will incur a 15% penalty on your token conversion.",
   },
   {
     question: "Why did $MUMU migrate?",

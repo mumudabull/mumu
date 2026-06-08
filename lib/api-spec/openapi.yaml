@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: migration
+    description: Migration operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /migration/stats:
+    get:
+      operationId: getMigrationStats
+      tags: [migration]
+      summary: Live migration stats
+      description: >-
+        Returns live on-chain stats for the MUMU migration token (holder count =
+        users upgraded, total supply = migrated supply) plus migrate.fun progress.
+      responses:
+        "200":
+          description: Migration stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MigrationStats"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +50,35 @@ components:
           type: string
       required:
         - status
+    MigrationStats:
+      type: object
+      properties:
+        holders:
+          type: number
+          description: Number of token holders (users who upgraded)
+        totalSupply:
+          type: number
+          description: Total supply of the migrated token (migrated supply)
+        totalSupplyFormatted:
+          type: string
+        migrationProgress:
+          type: number
+          description: Percentage of old token supply migrated (0-100)
+        currentPhase:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - holders
+        - totalSupply
+        - totalSupplyFormatted
+        - migrationProgress
+        - currentPhase
+        - startDate
+        - endDate
+        - updatedAt
 

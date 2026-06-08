@@ -1,28 +1,45 @@
 import { BarChart3, Users, Zap } from "lucide-react";
 import React from "react";
-
-const metrics = [
-  {
-    label: "Tokens Migrated",
-    value: "—",
-    sub: "Available June 1st",
-    icon: <Zap className="w-5 h-5 text-white" />,
-  },
-  {
-    label: "Active Migrators",
-    value: "—",
-    sub: "Available June 1st",
-    icon: <Users className="w-5 h-5 text-white" />,
-  },
-  {
-    label: "Total Value Locked",
-    value: "—",
-    sub: "Available June 1st",
-    icon: <BarChart3 className="w-5 h-5 text-white" />,
-  },
-];
+import {
+  getGetMigrationStatsQueryKey,
+  useGetMigrationStats,
+} from "@workspace/api-client-react";
+import { formatCompact, formatNumber } from "@/lib/utils";
 
 const LiveMetricsSection = () => {
+  const { data: stats } = useGetMigrationStats({
+    query: {
+      queryKey: getGetMigrationStatsQueryKey(),
+      refetchInterval: 60000,
+    },
+  });
+  const isLive = !!stats;
+  const progress = stats
+    ? Math.min(Math.max(stats.migrationProgress, 0), 100)
+    : 0;
+  const placeholder = "Loading…";
+
+  const metrics = [
+    {
+      label: "Tokens Migrated",
+      value: stats ? formatCompact(stats.totalSupply) : "—",
+      sub: isLive ? "Live migrated supply" : placeholder,
+      icon: <Zap className="w-5 h-5 text-white" />,
+    },
+    {
+      label: "Holders Upgraded",
+      value: stats ? formatNumber(stats.holders) : "—",
+      sub: isLive ? "Wallets that migrated" : placeholder,
+      icon: <Users className="w-5 h-5 text-white" />,
+    },
+    {
+      label: "Supply Migrated",
+      value: stats ? `${progress}%` : "—",
+      sub: isLive ? "Of old token supply" : placeholder,
+      icon: <BarChart3 className="w-5 h-5 text-white" />,
+    },
+  ];
+
   return (
     <section
       id="live-metrics"
@@ -35,13 +52,33 @@ const LiveMetricsSection = () => {
               Migration Stats
             </h2>
             <p className="text-white/60 font-sans mt-2">
-              Live data will be available when the portal opens June 1st.
+              {isLive
+                ? "Live on-chain migration data, refreshed every minute."
+                : "Loading live migration data…"}
             </p>
           </div>
-          <div className="bg-white/10 text-white/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 text-sm font-medium flex items-center gap-2">
-            <div className="w-2 h-2 bg-white/30 rounded-full" />
-            Not Yet Live
+          <div
+            className={`backdrop-blur-sm px-4 py-2 rounded-full border text-sm font-medium flex items-center gap-2 ${
+              isLive
+                ? "bg-[#56D491]/20 text-[#56D491] border-[#56D491]/30"
+                : "bg-white/10 text-white/50 border-white/10"
+            }`}
+          >
+            <div
+              className={`w-2 h-2 rounded-full ${
+                isLive ? "bg-[#56D491] animate-pulse" : "bg-white/30"
+              }`}
+            />
+            {isLive ? stats.currentPhase : "Loading…"}
           </div>
+        </div>
+
+        <div className="flex justify-center mb-12">
+          <img
+            src="/images/mumu-astronaut-candle.jpg"
+            alt="Astronaut Mumu floating in space pushing a giant green candle higher"
+            className="w-full max-w-[640px] aspect-[3/2] object-cover rounded-[32px] border-4 border-white/80 shadow-container rotate-1"
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -58,10 +95,18 @@ const LiveMetricsSection = () => {
               <div className="text-sm font-nerko font-bold text-white/40 uppercase tracking-wider mb-1">
                 {metric.label}
               </div>
-              <div className="text-4xl font-nerko text-white/30 mb-1">
+              <div
+                className={`text-4xl font-nerko mb-1 ${
+                  isLive ? "text-white" : "text-white/30"
+                }`}
+              >
                 {metric.value}
               </div>
-              <div className="text-sm text-white/30 font-nerko">
+              <div
+                className={`text-sm font-nerko ${
+                  isLive ? "text-[#56D491]" : "text-white/30"
+                }`}
+              >
                 {metric.sub}
               </div>
             </div>

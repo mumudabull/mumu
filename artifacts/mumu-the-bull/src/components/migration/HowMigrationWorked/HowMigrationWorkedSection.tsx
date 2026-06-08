@@ -8,9 +8,9 @@ const steps = [
     bgColor: "bg-[#BCA991]",
   },
   {
-    title: "Deposit Window (June 1st – June 8th)",
+    title: "Deposit Window (Open Now – June 8th 9AM EST)",
     description:
-      "Holders will deposit their old Mumu tokens through migrate.fun during the deposit window (June 1st – June 8th).",
+      "Holders deposit their old Mumu tokens through migrate.fun during the deposit window, which is open now and closes June 8th at 9AM EST.",
     bgColor: "bg-[#C8B7A4]",
   },
   {
@@ -26,16 +26,16 @@ const steps = [
     bgColor: "bg-[#E1D4CA]",
   },
   {
-    title: "Token Claiming (Opens June 8th)",
+    title: "Relaunch & Token Claiming (Opens June 8th 9AM EST)",
     description:
-      "Starting June 8th, holders can claim their new Mumu tokens at migrate.fun. 1% of old Mumu = 1% of new Mumu — proportional ownership is preserved.",
+      "$MUMU relaunches on Pump.fun June 8th at 9AM EST. Holders can then claim their new Mumu tokens at migrate.fun. 1% of old Mumu = 1% of new Mumu — proportional ownership is preserved.",
     bgColor: "bg-white",
     isHighlighted: true,
   },
   {
     title: "Claim Period",
     description:
-      "90-day window opens June 8th. Depositors keep their 1% = 1% share. Those who did not deposit during the window can still migrate with a 5% penalty.",
+      "90-day window opens June 8th. Depositors keep their 1% = 1% share. Those who claim after June 20th will incur a 15% penalty on their token conversion.",
     bgColor: "bg-white",
   },
   {
@@ -58,7 +58,7 @@ function HowMigrationWorkedSection() {
     >
       <div className="max-w-container container mx-auto relative z-10">
         <h2 className="text-white text-4xl md:text-6xl font-nerko text-center mb-12">
-          How Migration Will Work
+          How Migration Works
         </h2>
 
         <div className="flex flex-col gap-8 items-center">
@@ -86,11 +86,11 @@ function HowMigrationWorkedSection() {
           </div>
         </div>
       </div>
-      <div className="w-full max-w-[calc(var(--unit)*480)] aspect-square absolute bottom-0 right-0" style={{ maxWidth: "min(480px, calc(var(--unit)*480))" }}>
+      <div className="w-full max-w-[calc(var(--unit)*420)] aspect-[3/2] absolute bottom-4 right-4 rotate-2 z-10" style={{ maxWidth: "min(420px, calc(var(--unit)*420))" }}>
         <img
-          src="/images/how-migration-worked.png"
-          alt="Bull sitting in a chair"
-          className="w-full h-full object-contain"
+          src="/images/mumu-chair-chart.jpg"
+          alt="Mumu calmly reading in a chair while the old chart dumps on the TV"
+          className="w-full h-full object-cover rounded-2xl border-4 border-white shadow-container"
         />
       </div>
     </section>

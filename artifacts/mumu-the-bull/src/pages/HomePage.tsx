@@ -21,18 +21,11 @@ export default function HomePage() {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 768 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-    if (!isMobile) {
-      const hasSeenOnboarding = localStorage.getItem("mumu_onboarding_seen");
-      if (!hasSeenOnboarding) {
-        setShowOnboarding(true);
-      }
-    }
+    setShowOnboarding(true);
     setIsInitialized(true);
   }, []);
 
   const handleOnboardingComplete = () => {
-    localStorage.setItem("mumu_onboarding_seen", "true");
     setShowOnboarding(false);
     setShouldShowFlash(true);
   };

@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { name: "Gallery", href: "#gallery" },
 ];
 
-const SOCIAL_LINKS = [
+export const SOCIAL_LINKS = [
   {
     name: "telegram",
     icon: "/icons/telegram.svg",
@@ -23,10 +23,11 @@ const SOCIAL_LINKS = [
     disabled: false,
   },
   {
-    name: "pumpfun",
-    icon: "/icons/pumpfun.svg",
-    href: "#",
-    disabled: true,
+    name: "dexscreener",
+    icon: "/icons/dexscreener.png",
+    href: "https://dexscreener.com/solana/fvmzrd1qc66zw8vprw15xn1n5owupqpqgnq5oh18mr4e",
+    disabled: false,
+    keepColor: true,
   },
   {
     name: "instagram",
@@ -70,11 +71,14 @@ export default function Navbar({
   }, []);
 
   return (
+    <>
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || alwaysBlack
-          ? "bg-black/60 backdrop-blur-md py-3"
-          : "bg-linear-to-b from-black to-transparent py-5"
+      className={`fixed top-0 left-0 right-0 z-[70] transition-all duration-300 ${
+        isMobileMenuOpen
+          ? "bg-transparent py-3"
+          : isScrolled || alwaysBlack
+            ? "bg-black/60 backdrop-blur-md py-3"
+            : "bg-linear-to-b from-black to-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -100,7 +104,11 @@ export default function Navbar({
                 alt={social.name}
                 width={18}
                 height={18}
-                className="brightness-0 invert"
+                className={
+                  "keepColor" in social && social.keepColor
+                    ? ""
+                    : "brightness-0 invert"
+                }
               />
             </a>
           ))}
@@ -146,15 +154,17 @@ export default function Navbar({
 
         {/* Desktop Right: Buy Button */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link
-            href="/migration"
+          <a
+            href="https://migrate.fun/migrate/mig181"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white hover:bg-gray-100 text-black font-nerko text-xl px-8 py-2 rounded-buttons shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] transition-all active:translate-y-1 active:shadow-none hover:-rotate-3"
           >
             MIGRATE
-          </Link>
+          </a>
           <span className="w-px bg-white/20 h-10"></span>
           <a
-            href="https://dexscreener.com/solana/fvmzrd1qc66zw8vprw15xn1n5owupqpqgnq5oh18mr4e"
+            href="https://dexscreener.com/solana/5LafQUrVco6o7KMz42eqVEJ9LW31StPyGjeeu5sKoMtA"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-mumu-orange-6 hover:bg-mumu-orange-7 text-white font-nerko text-xl px-8 py-2 rounded-buttons shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] transition-all active:translate-y-1 active:shadow-none hover:-rotate-3"
@@ -200,6 +210,7 @@ export default function Navbar({
           </button>
         </div>
       </div>
+    </nav>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
@@ -246,17 +257,23 @@ export default function Navbar({
                   alt={social.name}
                   width={22}
                   height={22}
-                  className="brightness-0 invert"
+                  className={
+                  "keepColor" in social && social.keepColor
+                    ? ""
+                    : "brightness-0 invert"
+                }
                 />
               </a>
             ))}
           </div>
 
           <div className="flex flex-col gap-4 w-full max-w-sm">
-            <Link
-              href="/migration"
+            <a
+              href="https://migrate.fun/migrate/mig181"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full bg-white text-mumu-orange-6 font-nerko text-2xl py-4 rounded-buttons shadow-lg uppercase opacity-0 animate-pop-in hover:rotate-3 transition-all duration-300"
+              className="w-full text-center bg-white text-mumu-orange-6 font-nerko text-2xl py-4 rounded-buttons shadow-lg uppercase opacity-0 animate-pop-in hover:rotate-3 transition-all duration-300"
               style={{
                 animationDelay: `${
                   0.1 + (NAV_LINKS.length + SOCIAL_LINKS.length) * 0.1
@@ -264,9 +281,9 @@ export default function Navbar({
               }}
             >
               MIGRATE
-            </Link>
+            </a>
             <a
-              href="https://dexscreener.com/solana/fvmzrd1qc66zw8vprw15xn1n5owupqpqgnq5oh18mr4e"
+              href="https://dexscreener.com/solana/5LafQUrVco6o7KMz42eqVEJ9LW31StPyGjeeu5sKoMtA"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
@@ -282,6 +299,6 @@ export default function Navbar({
           </div>
         </div>
       )}
-    </nav>
+    </>
   );
 }

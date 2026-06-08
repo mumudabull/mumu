@@ -5,9 +5,6 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
 
 export interface MigrationStats {
   /** Number of token holders (users who upgraded) */
@@ -22,4 +19,3 @@ export interface MigrationStats {
   endDate: string;
   updatedAt: string;
 }
-

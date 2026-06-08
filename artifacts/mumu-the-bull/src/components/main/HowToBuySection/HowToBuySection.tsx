@@ -28,7 +28,7 @@ const buySteps = [
   {
     title: "SWAP SOL FOR $MUMU USING CONTRACT ADDRESS",
     description:
-      "Swap the Solana in your wallet for Mumu, you can find Mumu as an option by pasting in the contract address below: 5LafQUrVco6o7KMz42eqVEJ9LW31StPyGjeeu5sKoM1A",
+      "Swap the Solana in your wallet for Mumu, you can find Mumu as an option by pasting in the contract address below: 5LafQUrVco6o7KMz42eqVEJ9LW31StPyGjeeu5sKoMtA",
     bgColor: "bg-white",
   },
 ];

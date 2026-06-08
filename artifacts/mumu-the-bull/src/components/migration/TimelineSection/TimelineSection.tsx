@@ -3,18 +3,18 @@ import React from "react";
 const timelineEvents = [
   {
     id: 1,
-    date: "June 1",
-    title: "Migration Portal Opens",
+    date: "June 1 · 9AM EST",
+    title: "Migration Is Open",
     description:
-      "The $MUMU → Pump.fun migration portal goes live. Holders can begin depositing their old Mumu tokens.",
-    status: "upcoming",
+      "The $MUMU migration portal is live at migrate.fun. Deposit your old Mumu tokens now, before it closes June 8th.",
+    status: "current",
   },
   {
     id: 2,
-    date: "June 8",
-    title: "Token Claims Open",
+    date: "June 8 · 9AM EST",
+    title: "Relaunch & Token Claims Open",
     description:
-      "Holders can claim their new $MUMU tokens at migrate.fun. 1% of old Mumu = 1% of new Mumu — proportional ownership preserved.",
+      "$MUMU relaunches on Pump.fun and holders can claim their new $MUMU tokens at migrate.fun. 1% of old Mumu = 1% of new Mumu — proportional ownership preserved.",
     status: "upcoming",
   },
   {
@@ -22,7 +22,7 @@ const timelineEvents = [
     date: "~90 Days After",
     title: "Claim Period Ends",
     description:
-      "Late migrators incur a 5% penalty. Unclaimed tokens move to treasury and excess tokens are removed from circulation and locked.",
+      "Claims made after June 20th incur a 15% penalty. Unclaimed tokens move to treasury and excess tokens are removed from circulation and locked.",
     status: "upcoming",
   },
 ];
@@ -34,9 +34,16 @@ const TimelineSection = () => {
       className="w-full py-20 px-4 md:px-8 bg-black-9 text-white overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-6xl font-nerko mb-12 text-center uppercase tracking-tight">
+        <h2 className="text-4xl md:text-6xl font-nerko mb-8 text-center uppercase tracking-tight">
           Migration Timeline
         </h2>
+        <div className="flex justify-center mb-14">
+          <img
+            src="/images/mumu-june-calendar.jpg"
+            alt="Mumu pointing at the June calendar with migration week June 1 to 8 highlighted"
+            className="w-full max-w-[440px] aspect-[3/2] object-cover rounded-[28px] border-4 border-white shadow-container -rotate-1"
+          />
+        </div>
         <div className="relative border-l border-white/50 ml-4 md:ml-0 md:flex md:border-l-0 md:border-t md:justify-between">
           {timelineEvents.map((event, index) => (
             <div

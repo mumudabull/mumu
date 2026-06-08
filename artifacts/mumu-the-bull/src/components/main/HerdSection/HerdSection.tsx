@@ -39,12 +39,14 @@ function HerdSection() {
               <p className="text-white/80 font-nerko text-lg md:text-xl mb-6">
                 Followers across X / Instagram / TikTok
               </p>
-              <button
-                type="button"
+              <a
+                href="https://t.me/MumuTheBullPortal"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#3eff8b] text-black font-nerko text-xl md:text-2xl px-10 py-3 rounded-buttons shadow-container transition-all hover:scale-105 active:scale-95 uppercase"
               >
                 JOIN THE COMMUNITY
-              </button>
+              </a>
             </div>
           </div>
 

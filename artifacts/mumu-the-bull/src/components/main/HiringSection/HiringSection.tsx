@@ -81,7 +81,7 @@ function HiringSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="https://x.com/mumuonsolana"
+              href="https://x.com/mumu_bull/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-white text-black font-nerko text-base px-8 py-3 rounded-full hover:scale-105 active:scale-95 transition-transform duration-200 shadow-container"
@@ -89,7 +89,7 @@ function HiringSection() {
               DM on X (Twitter)
             </a>
             <a
-              href="https://t.me/mumuonsolana"
+              href="https://t.me/MumuTheBullPortal"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-mumu-orange-6 text-white font-nerko text-base px-8 py-3 rounded-full hover:scale-105 active:scale-95 transition-transform duration-200 shadow-container"

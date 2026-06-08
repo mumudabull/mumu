@@ -1,8 +1,21 @@
 import { animate } from "motion/react";
 import React, { useEffect, useState } from "react";
+import {
+  getGetMigrationStatsQueryKey,
+  useGetMigrationStats,
+} from "@workspace/api-client-react";
 import SectionDivider from "@/components/SectionDivider";
+import { formatCompact, formatNumber } from "@/lib/utils";
 
 function HeroSection() {
+  const { data: stats } = useGetMigrationStats({
+    query: {
+      queryKey: getGetMigrationStatsQueryKey(),
+      refetchInterval: 60000,
+    },
+  });
+  const progress = stats ? Math.min(Math.max(stats.migrationProgress, 0), 100) : 0;
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -11,7 +24,7 @@ function HeroSection() {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2026-06-01T00:00:00Z").getTime();
+    const targetDate = new Date("2026-06-08T13:00:00Z").getTime();
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime();
@@ -55,9 +68,9 @@ function HeroSection() {
                 }}
               >
                 <img
-                  src="/images/hero.png"
-                  alt="Hero Image"
-                  className="w-full h-full object-contain"
+                  src="/images/mumu-migration-door.jpg"
+                  alt="Mumu stepping through a doorway out of the old red world into a fresh green one"
+                  className="w-full h-full object-cover rounded-2xl border-4 border-white shadow-container"
                 />
               </div>
             </div>
@@ -66,7 +79,7 @@ function HeroSection() {
               Migration to Pump.fun
             </h2>
             <p className="text-white/70 font-nerko text-base md:text-xl text-center mb-6 md:mb-8">
-              Portal opens June 1st
+              Migration is live · Portal closes June 8th · 9AM EST
             </p>
 
             <div className="grid grid-cols-4 gap-2 md:gap-4 w-full max-w-sm mb-8 md:mb-12">
@@ -115,20 +128,29 @@ function HeroSection() {
 
             <div className="bg-black/20 rounded-full px-4 md:px-6 py-2 md:py-3 w-full max-w-lg mb-4">
               <p className="text-white text-center text-xs md:text-sm font-nerko">
-                Migration portal goes live in{" "}
+                Portal closes & $MUMU relaunches on Pump.fun in{" "}
                 <span className="text-[#56D491]">{timeLeft.days} days</span>
               </p>
             </div>
           </div>
 
-          <div className="mt-[-30px] md:mt-[-40px] z-20">
-            <button
-              type="button"
-              disabled
-              className="cursor-not-allowed opacity-50 bg-white text-black font-nerko text-xl md:text-2xl px-8 md:px-12 py-3 md:py-4 rounded-buttons shadow-container uppercase tracking-wide"
+          <div className="mt-[-30px] md:mt-[-40px] z-20 flex flex-col items-center gap-3">
+            <a
+              href="https://migrate.fun/migrate/mig181"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white hover:bg-gray-100 text-black font-nerko text-xl md:text-2xl px-8 md:px-12 py-3 md:py-4 rounded-buttons shadow-container uppercase tracking-wide transition-all active:translate-y-1 hover:-rotate-3"
             >
-              OPENS JUNE 1ST
-            </button>
+              GO TO MIGRATION PORTAL
+            </a>
+            <a
+              href="https://migrate.fun/project/mig181"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/80 hover:text-white font-nerko text-sm md:text-base underline underline-offset-4"
+            >
+              View migration details →
+            </a>
           </div>
 
           <div className="w-full mt-12 md:mt-16 flex flex-col gap-6 md:gap-8">
@@ -146,52 +168,66 @@ function HeroSection() {
                 </span>
               </div>
 
-              <div className="bg-white/20 rounded-full px-4 py-2 border border-black/10">
-                <span className="text-white/60 font-nerko text-sm">
-                  Not Yet Open
+              <div
+                className={`rounded-full px-4 py-2 border border-black/10 ${
+                  stats ? "bg-[#56D491]/20" : "bg-white/20"
+                }`}
+              >
+                <span
+                  className={`font-nerko text-sm ${
+                    stats ? "text-[#56D491]" : "text-white/60"
+                  }`}
+                >
+                  {stats ? stats.currentPhase : "Migration Live"}
                 </span>
               </div>
             </div>
 
             <div className="w-full bg-black/30 h-6 rounded-full overflow-hidden relative border border-black/20 shadow-inner">
               <div
-                className="bg-white/20 h-full rounded-full"
-                style={{ width: "0%" }}
+                className="bg-[#56D491] h-full rounded-full transition-[width] duration-700 ease-out"
+                style={{ width: `${progress}%` }}
               />
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               <div className="flex flex-col items-center md:items-start gap-1">
-                <span className="text-white/30 text-2xl md:text-3xl font-nerko leading-none">
-                  —
+                <span className="text-white text-2xl md:text-3xl font-nerko leading-none">
+                  {stats ? formatNumber(stats.holders) : "—"}
                 </span>
                 <span className="text-white/40 text-xs md:text-sm font-nerko uppercase">
-                  Tokens Migrated
+                  Holders Upgraded
                 </span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <span className="text-white/30 text-2xl md:text-3xl font-nerko leading-none">
-                  —
+                <span className="text-white text-2xl md:text-3xl font-nerko leading-none">
+                  {stats ? formatCompact(stats.totalSupply) : "—"}
                 </span>
                 <span className="text-white/40 text-xs md:text-sm font-nerko uppercase">
-                  Total Supply
+                  Migrated Supply
                 </span>
               </div>
               <div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-end gap-1">
-                <span className="text-white/30 text-2xl md:text-3xl font-nerko leading-none">
-                  —
+                <span className="text-white text-2xl md:text-3xl font-nerko leading-none">
+                  {stats ? `${progress}%` : "—"}
                 </span>
                 <span className="text-white/40 text-xs md:text-sm font-nerko uppercase">
-                  Deposited
+                  Supply Migrated
                 </span>
               </div>
             </div>
 
             <div className="flex justify-center">
               <div className="bg-white/10 rounded-full px-6 py-2 flex items-center gap-3 border border-white/10">
-                <div className="w-2.5 h-2.5 rounded-full bg-white/30" />
+                <div
+                  className={`w-2.5 h-2.5 rounded-full ${
+                    stats ? "bg-[#56D491] animate-pulse" : "bg-white/30"
+                  }`}
+                />
                 <span className="text-white/50 font-nerko text-sm">
-                  Portal opens June 1st
+                  {stats
+                    ? "Live · updates every minute"
+                    : "Portal closes June 8th · 9AM EST"}
                 </span>
               </div>
             </div>
